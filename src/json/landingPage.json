@@ -91,7 +91,7 @@
           "imageUrl": "/images/image-category-4.jpg",
           "country": "South Korea",
           "city": "Seoul Flore",
-          "isPopular": false
+          "isPopular": true
         }
       ]
     },
