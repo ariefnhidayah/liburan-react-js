@@ -21,7 +21,7 @@ export default function Categories({data}) {
                         category.items.map((item, index2) => {
                             return (
                                 <div key={`category-${index1}-item-${index2}`} className="item column-3 row-1">
-                                    <div className="card">
+                                    <div className="card card-category">
                                         {item.isPopular && (
                                             <div className="tag">
                                                 Popular{" "}
@@ -32,7 +32,7 @@ export default function Categories({data}) {
                                             <img src={item.imageUrl} alt={item.name} className="img-cover" />
                                         </figure>
                                         <div className="meta-wrapper">
-                                            <Button className="stretched-link d-block text-gray-800" href={`/properties/${item._id}`} type="link">
+                                            <Button className="stretched-link d-block text-gray-900" href={`/properties/${item._id}`} type="link">
                                                 <h5 className="h4 text-gray-900">{item.name}</h5>
                                             </Button>
                                             <span className="text-gray-500">
