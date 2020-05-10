@@ -9,6 +9,7 @@ export default function Button(props) {
     if (props.isSmall) className.push('btn-sm');
     if (props.isBlock) className.push('btn-block');
     if (props.hasShadow) className.push('btn-shadow');
+    if (props.isLight) className.push('btn-light');
 
     const onClick = () => {
         if (props.onClick) props.onClick()
@@ -45,9 +46,9 @@ export default function Button(props) {
     }
 
     return (
-        <Link to={props.href} className={className.join(' ')} style={props.style} onClick={onClick}>
+        <button className={className.join(' ')} style={props.style} onClick={onClick}>
             {props.children}
-        </Link>
+        </button>
     )
 }
 
@@ -65,5 +66,6 @@ Button.propTypes = {
     hasShadow: propTypes.bool,
     isPrimary: propTypes.bool,
     href: propTypes.string,
-    style: propTypes.string
+    style: propTypes.string,
+    isLight: propTypes.bool
 }

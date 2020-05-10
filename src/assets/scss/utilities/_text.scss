@@ -53,7 +53,7 @@
 }
 
 @each $color, $value in $colors {
-  @include text-emphasis-variant(".text-gray-#{$color}", $value, true);
+  @include text-emphasis-variant(".text-#{$color}", $value, true);
 }
 
 .text-body { color: $body-color !important; }

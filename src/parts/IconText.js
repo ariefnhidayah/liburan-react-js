@@ -2,10 +2,11 @@ import React from 'react'
 
 import Button from "../elements/Button";
 
-export default function IconText() {
+export default function IconText(props) {
+
     return (
-        <Button className="brand-text-icon" href="" type="link">
-            <span className="text-gray-900">Libur</span>AN
+        <Button className={["brand-text-icon", props.className].join(" ")} href="" type="link">
+            Stay<span className="text-gray-900">cation.</span>
         </Button>
     )
 }

@@ -52,7 +52,7 @@ export default function Footer() {
                                 <Button type="link" href="tel:+6285695469574" isExternal>0856 - 9546 - 9574</Button>
                             </li>
                             <li className="list-group-item">
-                                <span>Liburan, Tangerang</span>
+                                <span>LiburAN, Tangerang</span>
                             </li>
                         </ul>
                     </div>
