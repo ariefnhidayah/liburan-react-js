@@ -6,7 +6,7 @@ export default function IconText(props) {
 
     return (
         <Button className={["brand-text-icon", props.className].join(" ")} href="" type="link">
-            Stay<span className="text-gray-900">cation.</span>
+            Libur<span className="text-gray-900">AN.</span>
         </Button>
     )
 }

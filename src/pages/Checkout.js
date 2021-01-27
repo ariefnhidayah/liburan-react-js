@@ -1,23 +1,25 @@
 import React, { Component } from 'react'
 
+import { connect } from 'react-redux'
+
 import Header from 'parts/Header'
 import Fade from 'react-reveal/Fade'
 
 import Button from 'elements/Button'
 import Stepper, {
-        Numbering,
-        Meta,
-        MainContent,
-        Controller
+    Numbering,
+    Meta,
+    MainContent,
+    Controller
 } from 'elements/Stepper'
 
 import BookingInformation from 'parts/Checkout/BookingInformation'
 import Payment from 'parts/Checkout/Payment'
 import Completed from 'parts/Checkout/Completed'
 
-import ItemDetails from 'json/itemDetails.json'
+// import ItemDetails from 'json/itemDetails.json'
 
-export default class Checkout extends Component {
+class Checkout extends Component {
 
     state = {
         data: {
@@ -46,22 +48,39 @@ export default class Checkout extends Component {
 
     render() {
         const { data } = this.state;
-        const checkout = {
-            duration: 3
+        const { checkout, page } = this.props;
+
+        if (!checkout) {
+            return <div className="container">
+                <div
+                    className="row align-items-center justify-content-center text-center"
+                    style={{ height: '100vh' }}
+                >
+                    <div className="col-d">
+                        Pilih kamar terlebih dahulu
+                        <div>
+                            <Button className="btn mt-5" type="button" onClick={() => this.props.history.goBack()} isLight>
+                                Back
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         }
+
         const steps = {
             bookingInformation: {
                 title: 'Booking Information',
                 description: 'Please fill up the blank fields below',
                 content: (
-                    <BookingInformation data={data} checkout={checkout} itemDetails={ItemDetails} onChange={this.onChange} />
+                    <BookingInformation data={data} checkout={checkout} itemDetails={page[checkout._id]} onChange={this.onChange} />
                 )
             },
             payment: {
                 title: 'Payment',
                 description: 'Kindly follow the instructions below',
                 content: (
-                    <Payment data={data} checkout={checkout} itemDetails={ItemDetails} onChange={this.onChange} />
+                    <Payment data={data} checkout={checkout} itemDetails={page[checkout._id]} onChange={this.onChange} />
                 )
             },
             completed: {
@@ -97,8 +116,8 @@ export default class Checkout extends Component {
                                                     </Button>
                                                 </Fade>
                                             )}
-                                            <Button className="btn" type="link" isBlock isLight href={`/properties/${ItemDetails._id}`}>
-                                                Cancel
+                                        <Button className="btn" type="link" isBlock isLight href={`/properties/${checkout._id}`}>
+                                            Cancel
                                             </Button>
                                     </Controller>
                                 )}
@@ -114,8 +133,8 @@ export default class Checkout extends Component {
                                                     </Button>
                                                 </Fade>
                                             )}
-                                            <Button className="btn" type="button" isBlock isLight onClick={prevStep}>
-                                                Cancel
+                                        <Button className="btn" type="button" isBlock isLight onClick={prevStep}>
+                                            Cancel
                                             </Button>
                                     </Controller>
                                 )}
@@ -133,3 +152,10 @@ export default class Checkout extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+    checkout: state.checkout,
+    page: state.page
+})
+
+export default connect(mapStateToProps)(Checkout)
